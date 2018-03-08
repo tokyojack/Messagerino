@@ -1,0 +1,41 @@
+<% include ../partials/general/header.ejs %>
+
+<div class="hidden">
+    <senderUserId><%= user.id %></senderUserId>
+    <username><%= user.username %></username>
+    <conversationId><%= id %></conversationId>
+</div>
+
+<div class="container">
+                <input placeholder="Message" type="text" class="validate message-input">
+
+    <table class="bordered striped responsive-table">
+        <thead>
+          <tr>
+              <th class="table-title"><span class="left-align">Messages</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+          
+          <% for(var i = 0; i < messages.length; i++){  %>
+           <tr>
+               <%= console.log(messages[i]); %>
+            <td><span class="message-title"><%= messages[i].username %>:: <%=  messages[i].message %></span></td>
+          </tr>
+          <% } %>
+          
+    
+        
+        </tbody>
+      </table>
+
+</div>
+
+<!--DOwnloaded version?-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+
+<script type="text/javascript" src="/js/message.js"></script>
+
+<% include ../partials/general/footer.ejs %>

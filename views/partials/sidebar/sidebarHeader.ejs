@@ -1,0 +1,45 @@
+   <ul id="slide-out" class="side-nav fixed">
+      <li>
+         <div class="user-view">
+            <div class="background">
+               <img src="/images/todos.jpg">
+            </div>
+            <a href="/home"><h1 class="title">Messengerino</h1></a>
+           <span  class="white-text name hidden">a</span>
+           <span class="white-text email">Logged in as: <%= user.username %></span>
+         </div>
+      </li>
+      
+      <!--<li><a href="/classes">Classes</a></li>-->
+      <!--<li><a href="/employees">Employees</a></li>-->
+      <!--<li>-->
+      <!--   <div class="divider"></div>-->
+      <!--</li>-->
+      <!--<li><a href="/addemployee">Add Employee</a></li>-->
+      <!--<li><a href="/TODO">Remove Employee</a></li>-->
+      <!--<li>-->
+
+      <!--</li>-->
+      <!--<li><a href="/addstudent">Add Student</a></li>-->
+      <!--<li><a href="/TODO">Remove Student</a></li>-->
+      <% for(var i = 0; todoLists.length > i; i++){ %>
+         <% var todoList = todoLists[i] %>
+
+        <% if(typeof id != 'undefined' && todoList.id == id){ %>
+            <li class="selected"><a href="/conversation/<%= todoList.id %>"><%= todoList.username %></a></li>
+         <% } else { %>
+            <li><a href="/conversation/<%= todoList.id %>"><%= todoList.username %></a></li>
+         <% } %>
+         
+      <% } %>
+      
+   
+
+<!--Fix the stretch-->
+      <li ><div class="center-align"><a id="addButton" href="/createconversation" class="waves-effect waves-light btn">CREATE CONVERSATION</a></div></li>
+            <li ><div class="left-align"><a id="logoutButton" href="/logout" class="waves-effect waves-light btn red"><i class="material-icons left">arrow_back</i>Logout</a></div></li>
+
+   </ul>
+   <a href="#" data-activates="slide-out" class="button-collapse"><i class="medium material-icons" id="menuIcon">menu</i></a>
+
+<main>

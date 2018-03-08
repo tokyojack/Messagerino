@@ -1,0 +1,1 @@
+INSERT INTO conversations(user_1, user_2) SELECT ?, (SELECT id FROM users WHERE username=?);
