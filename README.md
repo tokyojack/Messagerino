@@ -20,4 +20,4 @@ on!
 
 ##
 
-Now you've just install the program! What will we do, they just aquired a far superior and effective message delevier!  ```(╯°□°）╯︵ ┻━┻```!
+Now you've just install the program! What will we do, they just aquired a far superior message delevier!  ```(╯°□°）╯︵ ┻━┻```!
