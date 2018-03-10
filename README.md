@@ -14,9 +14,9 @@
 
 ## Usage
 
-After done install it, you'll have to sign-up. Login with the credentials you've signed up with. Then click "Create conversation" and fill
-in your friends username (you can create a second acount for this if you want). Then, select the conversation on the right and chat message
-on!
+After done install it, you'll have to sign-up. Login with the credentials you've signed up with. 
+
+Click "Create conversation" and fill in your friends username (you can create a second acount for this if you want). Then, select the conversation on the right and send your messages!
 
 ##
 
