@@ -49,8 +49,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(flash());
-
 var flashUtils = require('./utils/flashUtils');
 
 app.use(function(req, res, next) {
@@ -65,7 +63,7 @@ app.use(function(req, res, next) {
             if (flashUtils.isDatabaseError(req, res, '/', err))
                 return;
 
-            // TODO: Double-check this
+            // TODO: Double-check this is not buggy
             var query = "SELECT conversations.id, users.username FROM conversations LEFT JOIN users ON users.id = conversations.user_1 OR users.id = conversations.user_2 WHERE (conversations.user_1=? OR conversations.user_2=?) AND users.id!=?"
 
             connection.query(query, [req.user.id, req.user.id, req.user.id], function(err, rows) {
@@ -132,7 +130,6 @@ io.on('connection', function(socket) {
 
 //============================= Starting Server =============================
 
-// Make sure it's "http" instead of "app" for Socket.io
 http.listen(8080, function() {
     console.log("Server running".rainbow);
 });

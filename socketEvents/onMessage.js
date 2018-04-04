@@ -1,14 +1,12 @@
-module.exports = function(pool, socket, io) {
+var flashUtils = require("../utils/flashUtils");
 
-    socket.on('message', function(newMessage) {
+var redirectLocation = "back";
 
-        pool.getConnection(function(err, connection) {
-
-            if (err) {
-                console.log(err);
+module.exports = function (pool, socket, io) {
+    socket.on("message", function (newMessage) {
+        pool.getConnection(function (err, connection) {
+            if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
                 return;
-            }
-
 
             var message = newMessage.message;
             var username = newMessage.username;
@@ -16,23 +14,23 @@ module.exports = function(pool, socket, io) {
             var senderUserId = newMessage.senderUserId;
             var conversationId = newMessage.conversationId;
 
-            connection.query("INSERT INTO messages(message, sender_user_id, conversation_id) VALUES(?,?,?)", [message, senderUserId, conversationId], function(err, rows) {
-                connection.release();
+            var insertMessage = require('./queries/insertMessage.sql');
 
-                if (err) {
-                    console.log(err);
-                    return;
+            connection.query(insertMessage, [message, senderUserId, conversationId],
+                function (err, rows) {
+                    connection.release();
+
+                    if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
+                        return;
+
+                    console.log("Successfully sent: " + message);
+
+                    io.sockets.in(conversationId).emit("new_message", {
+                        username: username,
+                        message: message
+                    });
                 }
-
-                console.log("Successfully sent: " + message);
-
-  
-                
-                io.sockets.in(conversationId).emit('new_message', {username: username, message: message});
-
-            });
-
+            );
         });
     });
-
 };

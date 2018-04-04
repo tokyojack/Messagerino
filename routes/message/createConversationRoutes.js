@@ -27,15 +27,10 @@ module.exports = function(pool) {
                 if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
                     return;
 
-                console.log(row);
-
-                // TODO add "todo" list name/type to message?
                 flashUtils.successMessage(req, res, '/conversation/' + row.insertId, 'Successfully created a new todo-list!');
             });
-
         });
     });
-
 
     return router;
 };

@@ -1,0 +1,1 @@
+INSERT INTO messages(message, sender_user_id, conversation_id) VALUES(?,?,?)

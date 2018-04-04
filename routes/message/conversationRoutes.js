@@ -30,7 +30,6 @@ module.exports = function(pool) {
                     id: id,
                     messages: rows
                 });
-
             });
         });
     });
