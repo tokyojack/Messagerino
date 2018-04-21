@@ -8,8 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "a"
+    "url": "https://github.com/tokyojack/Messagerino"
   },
+  "bugs": {
+    "url": "https://github.com/tokyojack/Messagerino/issues"
+  },
+  "homepage": "https://github.com/tokyojack/Messagerino#readme",
   "author": "Jack Clarke",
   "license": "ISC",
   "dependencies": {

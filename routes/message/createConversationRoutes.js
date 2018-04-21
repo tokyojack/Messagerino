@@ -6,22 +6,22 @@ var middleMan = require("../../utils/middleMan");
 var redirectLocation = "/home";
 
 // URL: "/createconversation"
-module.exports = function(pool) {
+module.exports = function (pool) {
 
     //"createConversation.ejs" page
-    router.get("/", middleMan.isLoggedIn, function(req, res) {
+    router.get("/", middleMan.isLoggedIn, function (req, res) {
         res.render("messenging/createConversation.ejs");
     });
 
     // Inserts conversation from "createConversation.ejs" form submit
-    router.post("/", middleMan.isLoggedIn, function(req, res) {
-        pool.getConnection(function(err, connection) {
+    router.post("/", middleMan.isLoggedIn, function (req, res) {
+        pool.getConnection(function (err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
                 return;
 
             var insertConversation = require('./queries/insertConversation.sql');
 
-            connection.query(insertConversation, [req.user.id, req.body.username, req.body.username, req.user.id], function(err, row) {
+            connection.query(insertConversation, [req.user.id, req.body.username, req.body.username, req.user.id], function (err, row) {
                 connection.release();
 
                 if (flashUtils.isDatabaseError(req, res, redirectLocation, err))

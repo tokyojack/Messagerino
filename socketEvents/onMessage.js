@@ -3,6 +3,7 @@ var flashUtils = require("../utils/flashUtils");
 var redirectLocation = "back";
 
 module.exports = function (pool, socket, io) {
+
     socket.on("message", function (newMessage) {
         pool.getConnection(function (err, connection) {
             if (flashUtils.isDatabaseError(req, res, redirectLocation, err))
@@ -33,4 +34,5 @@ module.exports = function (pool, socket, io) {
             );
         });
     });
+
 };

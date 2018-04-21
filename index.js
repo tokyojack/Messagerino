@@ -31,15 +31,13 @@ require('./config/passport')(passport, pool);
 //============================= Letting express use them =============================
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(express.static(__dirname + "/public"));
+
 app.use(flash());
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -63,8 +61,11 @@ app.use(function(req, res, next) {
             if (flashUtils.isDatabaseError(req, res, '/', err))
                 return;
 
-            // TODO: Double-check this isn't buggy
-            var query = "SELECT conversations.id, users.username FROM conversations LEFT JOIN users ON users.id = conversations.user_1 OR users.id = conversations.user_2 WHERE (conversations.user_1=? OR conversations.user_2=?) AND users.id!=?"
+            // TODO: Double-check this doesn't cause bugs
+            var query = "SELECT conversations.id, users.username FROM conversations \
+                        LEFT JOIN users \
+                            ON users.id = conversations.user_1 OR users.id = conversations.user_2 \
+                        WHERE (conversations.user_1=? OR conversations.user_2=?) AND users.id!=?"
 
             connection.query(query, [req.user.id, req.user.id, req.user.id], function(err, rows) {
                 connection.release();

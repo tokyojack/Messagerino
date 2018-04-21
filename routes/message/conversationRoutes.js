@@ -9,7 +9,6 @@ var redirectLocation = "/home";
 module.exports = function(pool) {
 
     // "conversation.ejs" page
-    // MIddleman: middleMan.checkIfUserOwnsTodolist,
     router.get("/:id", function(req, res) {
 
         var id = parseInt(req.params.id);

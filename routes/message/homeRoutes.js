@@ -5,9 +5,7 @@ var middleMan = require("../../utils/middleMan");
 module.exports = function() {
 
     // "home.ejs" page
-    router.get("/", middleMan.isLoggedIn, function(req, res) {
-        res.render("messenging/home.ejs");
-    });
+    router.get("/", middleMan.isLoggedIn, (req, res) => res.render("messenging/home.ejs"));
 
     return router;
 };
